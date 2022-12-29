@@ -22,7 +22,7 @@ connector_pts = []
 
 for crv in list_of_crvs:
     check_length = float(rs.CurveLength(crv))
-    if check_length >= float(_lbrJalur - 0.01):
+    if check_length >= float(path - 0.01):
         move_crv = rs.CopyObject(crv, beam_depth)
         startPt = rs.CurveStartPoint(move_crv)
         connector_pts.append(startPt)

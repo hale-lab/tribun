@@ -30,6 +30,7 @@ h_mata = 0.875
 delta_kepala = 0.12
 
 #variabel lainnya
+kursiTribun = _kT[:-1]
 titik_mata = []
 testPts = []
 testResults = []
@@ -39,24 +40,28 @@ hasilUji = []
 lulus = []
 gagal = []
 
+
+#tentukan titik terdekat antara tribun penonton ke garis lapangan.
+garisLap = rs.EvaluateCurve(_pL, rs.CurveClosestPoint(_pL, kursiTribun[0]))
+
 #buat posisi mata dan garis pandangan.
-for i in range(0, len(_kT)):
+for i in range(0, len(kursiTribun)):
     copy_mata = rs.CopyObject(_kT[i],[0,0,h_mata])
     titik_mata.append(copy_mata)
-    viewLine = rs.AddLine(copy_mata, _pL)
+    viewLine = rs.AddLine(copy_mata, garisLap)
     viewLines.append(viewLine)
-    eyeLevel = rs.AddLine(_kT[i], copy_mata)
+    eyeLevel = rs.AddLine(kursiTribun[i], copy_mata)
     eyeLevels.append(eyeLevel)
     
 viewLines_fix = OffsetList(viewLines)
 
 #uji sudut pandangan.
-for i in range(0, len(_kT)):
+for i in range(0, len(kursiTribun)):
     testPt_param = rs.CurveClosestPoint(viewLines_fix[i],titik_mata[i])
     testPt = rs.EvaluateCurve(viewLines_fix[i], testPt_param)
     testPts.append(testPt)
 
-for i in range(0, len(_kT)-1):
+for i in range(0, len(kursiTribun)-1):
     testResult = rs.AddLine(titik_mata[i], testPts[i])
     testResults.append(testResult)
     

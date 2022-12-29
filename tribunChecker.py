@@ -27,7 +27,7 @@ def OffsetList(list):
 
 #variabel tinggi mata dan kepala
 h_mata = 0.875
-delta_kepala = 0.12
+delta_kepala = 0.100
 
 #variabel lainnya
 kursiTribun = _kT[:-1]
@@ -68,7 +68,9 @@ for i in range(0, len(kursiTribun)-1):
 #proses hasil uji.
 for i in range(0, len(testResults)):
     result = rs.CurveLength(testResults[i])
-    if result >= delta_kepala:
+    vector = rs.VectorCreate(rs.CurveStartPoint(testResults[i]), rs.CurveEndPoint(testResults[i]))
+    print(vector[2])
+    if result >= delta_kepala and float(vector[2]) < 0:
         write = "sesuai standar FIFA!"
         hasilUji.append(write)
         lulus.append(write)

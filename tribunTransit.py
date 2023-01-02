@@ -2,15 +2,15 @@ import rhinoscriptsyntax as rs
 import ghpythonlib as gh
 
 transit_crv = _inputCrvs[-1]
-wall = rs.CopyObject(transit_crv, [0, 0, _riserTransit - _riserTribun])
+wall = rs.CopyObject(transit_crv, [0, 0, _tinggiTransit])
 
 midPt = rs.CurveMidPoint(transit_crv)
 copy_midPt = rs.CurveMidPoint(wall)
 
 
 
-step = rs.OffsetCurve(wall, (-10000, -10000, 0), _stepTribun + 0.15)
-riser = rs.CopyObject(step, [0, 0, _riserTribun])
+step = rs.OffsetCurve(wall, (-10000, -10000, 0), _stepTransit + 0.15)
+riser = rs.CopyObject(step, [0, 0, _riserTransit])
 
 transit_wall = rs.ExtrudeCurve(transit_crv, rs.AddLine(midPt,copy_midPt))
 transit_riser = rs.ExtrudeCurve(step, rs.AddLine(rs.CurveMidPoint(step), rs.CurveMidPoint(riser)))

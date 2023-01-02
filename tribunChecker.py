@@ -73,8 +73,8 @@ for i in range(0, len(testResults)):
         write = "sesuai standar FIFA!"
         hasilUji.append(write)
         lulus.append(write)
-    elif result >= (delta_kepala - 0.030) and float(vector[2]) < 0:
-        write = "masih bisa ga?"
+    elif result >= (delta_kepala - 0.020) and float(vector[2]) < 0:
+        write = "hampir standar FIFA"
         hasilUji.append(write)
         lulus.append(write)
     else :

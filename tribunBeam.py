@@ -15,8 +15,8 @@ list_of_crvs = rs.ExplodeCurves(project_crv)
 list_of_crvs.pop(0)
 
 #deteksi ukuran step dan path pada input geometri tribun.
-riser = round(rs.CurveLength(list_of_crvs[-2]), 3)
-step = round(rs.CurveLength(list_of_crvs[-3]), 3)
+riser = round(rs.CurveLength(list_of_crvs[1]), 3)
+step = round(rs.CurveLength(list_of_crvs[2]), 3)
 
 #generate titik untuk membentuk profil sisi bawah balok.
 connector_pts = []

@@ -23,14 +23,15 @@ connector_pts = []
 
 for crv in list_of_crvs:
     check_length = round(rs.CurveLength(crv), 3)
-    if check_length == step :
+    check_dir = rs.VectorCreate(rs.CurveStartPoint(crv), rs.CurveEndPoint(crv))
+    if check_length == step and abs(round(check_dir[2],2)) == 0 :
         length = step
         startPt = rs.CurveStartPoint(crv)
         endPt = rs.CurveEndPoint(crv)
         path = rs.VectorScale(rs.VectorCreate(startPt, endPt), (_depth / length))
         new_Pt = rs.CopyObject(rs.CurveStartPoint(crv), rs.VectorAdd(beam_depth, path))
         connector_pts.append(new_Pt)
-    elif check_length > step :
+    elif check_length > step and abs(round(check_dir[2],2)) == 0 :
         length = round(rs.CurveLength(crv), 3)
         startPt = rs.CurveStartPoint(crv)
         endPt = rs.CurveEndPoint(crv)
